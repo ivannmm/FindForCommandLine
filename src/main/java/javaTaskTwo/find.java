@@ -5,14 +5,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 public class find {
-    private ArrayList<String> result = new ArrayList<String>();
+    private List<String> result = new ArrayList<>();
 
-    public ArrayList<String> getFile(boolean allDirectory, String way, String fileName) {
-        Path path = Paths.get(way + "\\" + fileName);
+    public List<String> getFile(boolean allDirectory, String way, String fileName) {
+        Path path = Paths.get(way + File.separator + fileName);
         if (Files.exists(path))
-            result.add(way + "\\" + fileName);
+            result.add(way + File.separator + fileName);
         if (allDirectory)
             ifAllDirTrue(way, fileName);
         return result;
@@ -21,13 +22,14 @@ public class find {
     private void ifAllDirTrue (String way, String fileName) {
         File forAllDirectory = new File(way);
         String[] arrayOfFiles = forAllDirectory.list();
+        assert arrayOfFiles != null;
         for (String elem : arrayOfFiles) {
-            File forCheck = new File(way + "\\" + elem);
+            File forCheck = new File(way + File.separator + elem);
             if (forCheck.isDirectory()) {
-                Path path = Paths.get(way + "\\" + elem + "\\" + fileName);
+                Path path = Paths.get(way + File.separator + elem + File.separator + fileName);
                 if (Files.exists(path))
-                    result.add(way + "\\" + elem + "\\" + fileName);
-                ifAllDirTrue(way + "\\" + elem, fileName);
+                    result.add(way + File.separator + elem + File.separator + fileName);
+                ifAllDirTrue(way + File.separator + elem, fileName);
             }
         }
     }

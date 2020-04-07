@@ -8,9 +8,9 @@ import org.kohsuke.args4j.Option;
 public class readLine {
     @Option(name = "-r")
     private boolean allDirectory;
-    @Option(name = "-d")
+    @Option(name = "-d", required = true)
     private String way;
-    @Argument()
+    @Argument(required = true)
     private String filename;
 
     public static void main(String[] args) {
@@ -24,20 +24,12 @@ public class readLine {
             parser.parseArgument(args);
         } catch (CmdLineException e) {
             System.out.println(e.getMessage());
+            System.out.println("java -jar find.jar [-r] [-d directory] filename.txt");
             parser.printUsage(System.out);
             return;
         }
 
-        if (filename == null){
-            System.out.println("Нe указано название файла");
-            return;
-        }
-
-        try {
-            find find = new find();
-            System.out.println(find.getFile(allDirectory, way, filename));
-        } catch (java.lang.NullPointerException e) {
-            System.out.println("Не указан путь к файлу");
-        }
+        find find = new find();
+        System.out.println(find.getFile(allDirectory, way, filename));
     }
 }
