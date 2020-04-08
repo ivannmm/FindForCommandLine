@@ -16,9 +16,10 @@ public class find {
         if (Files.exists(Paths.get(way + File.separator + fileName))) {
             result.add(way + File.separator + fileName);
         }
-        for (String elem : arrayOfFiles) {
-            File forCheck = new File(way + File.separator + elem);
-            if (forCheck.isDirectory() && allDirectory) {
+        if (allDirectory)
+            for (String elem : arrayOfFiles) {
+                File forCheck = new File(way + File.separator + elem);
+                if (forCheck.isDirectory()) {
                 result.addAll(getFile(true, way + File.separator + elem, fileName));
             }
         }
