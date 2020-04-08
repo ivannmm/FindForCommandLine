@@ -8,29 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class find {
-    private List<String> result = new ArrayList<>();
-
     public List<String> getFile(boolean allDirectory, String way, String fileName) {
-        Path path = Paths.get(way + File.separator + fileName);
-        if (Files.exists(path))
-            result.add(way + File.separator + fileName);
-        if (allDirectory)
-            ifAllDirTrue(way, fileName);
-        return result;
-    }
-
-    private void ifAllDirTrue (String way, String fileName) {
+        List<String> result = new ArrayList<>();
         File forAllDirectory = new File(way);
         String[] arrayOfFiles = forAllDirectory.list();
         assert arrayOfFiles != null;
+        if (Files.exists(Paths.get(way + File.separator + fileName))) {
+            result.add(way + File.separator + fileName);
+        }
         for (String elem : arrayOfFiles) {
             File forCheck = new File(way + File.separator + elem);
-            if (forCheck.isDirectory()) {
-                Path path = Paths.get(way + File.separator + elem + File.separator + fileName);
-                if (Files.exists(path))
-                    result.add(way + File.separator + elem + File.separator + fileName);
-                ifAllDirTrue(way + File.separator + elem, fileName);
+            if (forCheck.isDirectory() && allDirectory) {
+                result.addAll(getFile(true, way + File.separator + elem, fileName));
             }
         }
+        return result;
     }
 }
