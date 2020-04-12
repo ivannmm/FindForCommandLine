@@ -2,12 +2,11 @@ package javaTaskTwo;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class find {
+public class Find {
     public List<String> getFile(boolean allDirectory, String way, String fileName) {
         List<String> result = new ArrayList<>();
         File forAllDirectory = new File(way);

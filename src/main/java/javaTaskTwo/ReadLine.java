@@ -5,7 +5,7 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
-public class readLine {
+public class ReadLine {
     @Option(name = "-r")
     private boolean allDirectory;
     @Option(name = "-d", required = true)
@@ -14,7 +14,7 @@ public class readLine {
     private String filename;
 
     public static void main(String[] args) {
-        new readLine().launch(args);
+        new ReadLine().launch(args);
     }
 
     public void launch(String[] args) {
@@ -29,7 +29,7 @@ public class readLine {
             return;
         }
 
-        find find = new find();
+        Find find = new Find();
         System.out.println(find.getFile(allDirectory, way, filename));
     }
 }
