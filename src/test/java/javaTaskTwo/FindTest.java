@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class findTest {
+class FindTest {
 
     @Test
     void getFile() {
@@ -24,12 +24,12 @@ class findTest {
                 + separator + "qwerty" + separator + "3" + separator + "text.txt");
         expected.add("." + separator + "src" + separator + "main" + separator + "resources" + separator + "forTests"
                 + separator + "qwerty" + separator + "3" + separator + "1" + separator + "text.txt");
-        assertEquals(expected, find.getFile(true, "." + separator + "src" + separator +
-                "main" + separator + "resources", "text.txt"));
+        assertEquals(expected, find.getFile(true, new File("." + separator + "src" + separator +
+                "main" + separator + "resources"), "text.txt"));
 
         List<String> expectedTwo = new ArrayList<>();
         expectedTwo.add("." + separator + "src" + separator + "main" + separator + "resources" + separator + "text.txt");
-        assertEquals(expectedTwo, find.getFile(false, "." + separator + "src" + separator +
-                "main" + separator + "resources", "text.txt"));
+        assertEquals(expectedTwo, find.getFile(false, new File("." + separator + "src" + separator +
+                "main" + separator + "resources"), "text.txt"));
     }
 }

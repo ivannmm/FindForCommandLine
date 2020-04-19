@@ -7,19 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Find {
-    public List<String> getFile(boolean allDirectory, String way, String fileName) {
+    public static List<String> getFile(boolean allDirectory, File file, String fileName) {
         List<String> result = new ArrayList<>();
-        File forAllDirectory = new File(way);
-        String[] arrayOfFiles = forAllDirectory.list();
-        assert arrayOfFiles != null;
-        if (Files.exists(Paths.get(way + File.separator + fileName))) {
-            result.add(way + File.separator + fileName);
-        }
+        String[] arrayOfFiles = file.list();
+        if (arrayOfFiles != null)
+            if (Files.exists(Paths.get(file.getPath(), fileName))) {
+            result.add(file.getPath() + File.separator + fileName);
+            }
         if (allDirectory)
             for (String elem : arrayOfFiles) {
-                File forCheck = new File(way + File.separator + elem);
+                File forCheck = new File(file.getPath(), elem);
                 if (forCheck.isDirectory()) {
-                result.addAll(getFile(true, way + File.separator + elem, fileName));
+                result.addAll(getFile(true, new File(file.getPath(), elem), fileName));
             }
         }
         return result;
