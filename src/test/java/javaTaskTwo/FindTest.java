@@ -13,7 +13,6 @@ class FindTest {
     @Test
     void getFile() {
         List<String> expected = new ArrayList<>();
-        Find find = new Find();
         char separator = File.separatorChar;
         expected.add("." + separator + "src" + separator + "main" + separator + "resources" + separator + "text.txt");
         expected.add("." + separator + "src" + separator + "main" + separator + "resources" + separator + "forTests"
@@ -24,12 +23,13 @@ class FindTest {
                 + separator + "qwerty" + separator + "3" + separator + "text.txt");
         expected.add("." + separator + "src" + separator + "main" + separator + "resources" + separator + "forTests"
                 + separator + "qwerty" + separator + "3" + separator + "1" + separator + "text.txt");
-        assertEquals(expected, find.getFile(true, new File("." + separator + "src" + separator +
-                "main" + separator + "resources"), "text.txt"));
+        List<String> result = Find.getFile(true, new File("." + separator + "src" + separator +
+                "main" + separator + "resources"), "text.txt");
+        assertEquals(expected,result);
 
         List<String> expectedTwo = new ArrayList<>();
         expectedTwo.add("." + separator + "src" + separator + "main" + separator + "resources" + separator + "text.txt");
-        assertEquals(expectedTwo, find.getFile(false, new File("." + separator + "src" + separator +
+        assertEquals(expectedTwo, Find.getFile(false, new File("." + separator + "src" + separator +
                 "main" + separator + "resources"), "text.txt"));
     }
 }
