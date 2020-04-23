@@ -10,8 +10,8 @@ import java.io.File;
 public class ReadLine {
     @Option(name = "-r")
     private boolean allDirectory;
-    @Option(name = "-d", required = true)
-    private File file;
+    @Option(name = "-d")
+    private File file = new File(".");
     @Argument(required = true)
     private String filename;
 
