@@ -34,7 +34,7 @@ class FindTest {
 
         List<String> expectedThree = new ArrayList<>();
         expectedThree.add("." + separator + "src" + separator + "test"+ separator + "resources");
-        assertEquals(expectedThree, Find.getFile(true, new File ("." + separator+ "src" + separator
+        assertEquals(expectedThree, Find.getFile(false, new File ("." + separator+ "src" + separator
                 + "test"), "resources"));
 
         List<String> expectedFour = new ArrayList<>();
