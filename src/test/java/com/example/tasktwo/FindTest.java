@@ -1,4 +1,4 @@
-package javaTaskTwo;
+package com.example.tasktwo;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +33,7 @@ class FindTest {
                 "test" + separator + "resources"), "text.txt"));
 
         List<String> expectedThree = new ArrayList<>();
+        expectedThree.add("." + separator + "src" + separator + "test"+ separator + "resources");
         assertEquals(expectedThree, Find.getFile(true, new File ("." + separator+ "src" + separator
                 + "test"), "resources"));
 

@@ -1,4 +1,4 @@
-package javaTaskTwo;
+package com.example.tasktwo;
 
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
